@@ -50,12 +50,43 @@
     border: #9B1428;
 }
 
+.a_button {
+    padding: 5px;
+    margin: 5px;
+    color: whitesmoke;
+    font-weight: bold;
+    background: #B01302;
+    border-width: thick;
+    border-radius: 5px;
+
+    border: #B01302;
+}
+
+.a_button:hover {
+    background: #9B1428;
+    border: #9B1428;
+}
+
+
 .labels {
     background: darkgrey;
     font-weight: bold;
 }
 .activity {
 
+}
+
+.name {
+    background: transparent;
+    font-size: medium;
+    padding: 10px;
+    border: none;
+}
+.name:focus-within {
+    background: whitesmoke;
+    border-width: thick;
+    border-radius: 5px;
+    border: #c6cfd1;
 }
 
 table, th, td {
