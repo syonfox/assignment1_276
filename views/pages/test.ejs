@@ -9,13 +9,68 @@
 </head>
 
 <link rel="stylesheet" href="../../public/css/calculator.css" type="text/css" />
-<script src="../../public/js/calculator.js" type="text/javascript"></script>
 <body background="#a6192e">
 
-<div id="main" class='main'>
-saklsdakljasjk
+<div id="main1" class='main'>
 
+    <H1>Grade Calculator</H1>
+
+    <div id="calc1" class="calc">
+
+        <h3 style="color: #9B1428">Activity</h3>
+        <p>Give grades to the numeric activities:</p>
+        <table>
+            <tbody>
+            <tr class="labels">
+                <td>Name</td>
+                <td>Short Name</td>
+                <td>Weight</td>
+                <td>Grade</td>
+                <td>Percent</td>
+            </tr>
+            <tr class="activity">
+                <td>Activity 1</td>
+                <td>A1</td>
+                <td><input class='weight_input' ></td>
+                <td><input class='grade_input'  >/ <br> <input class='grade_input'></td>
+                <td><span class='percent'>&nbsp;</span></td>
+            </tr>
+            <tr class="activity">
+                <td>Activity 2</td>
+                <td>A2</td>
+                <td><input class='weight_input' ></td>
+                <td><input class='grade_input' >/ <br> <input class='grade_input'></td>
+                <td><span class='percent' >&nbsp;</span></td>
+            </tr>
+            <tr class="activity">
+                <td>Activity 3</td>
+                <td>A3</td>
+                <td><input class='weight_input' ></td>
+                <td><input class='grade_input' >/ <br> <input class='grade_input'></td>
+                <td><span class='percent' >&nbsp;</span></td>
+            </tr>
+            <tr class="activity">
+                <td>Activity 4</td>
+                <td>A4</td>
+                <td><input class='weight_input' ></td>
+                <td><input class='grade_input' >/ <br> <input class='grade_input'></td>
+                <td><span class='percent' >&nbsp;</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <h3 style="color: #9B1428">Result: </h3>
+        <span id="results", style="font-size: x-large;color: #9B1428">50%</span>
+        <button class="calc_button" id="btn_w">WEIGHTED</button>
+        <button class="calc_button" id="btn_m">MEAN</button>
+
+    </div>
 </div>
+
+<script src="../../public/js/calculator.js" type="text/javascript"></script>
+
+
 
 </body>
 </html>
