@@ -132,7 +132,13 @@ bw.onclick = function () {
         totalw += weight;
 
     }
+
     wp = totalp/totalw;
+    if(isNaN(wp)) {
+        wp = 0;
+        is_nans = true
+    }
+
     res = document.getElementById('results');
     res.innerHTML =  parseFloat(Number(wp).toFixed(3)) + '%';
     if(is_nans) {
