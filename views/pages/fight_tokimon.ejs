@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Security-Policy"
+      content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+<head>
+    <link rel="stylesheet" href="public/css/tokimon.css" type="text/css"/>
+</head>
+
+<body>
+
+<script>
+    var tokimon = <%- JSON.stringify(results) %>;
+    console.log(tokimon)
+    // tokimon.forEach(function (r) {
+    //     console.log(r);
+    // })
+
+    function t2_select_tokimon() {
+        let n = document.getElementById('t2_select').value;
+        let t2 = document.getElementById('t2');
+        // console.log(name)
+        // r = tokimon[name]
+        let t1s = document.getElementById('t1_select');
+
+        select_tokimon(n, t2, t1s)
+    }
+
+    function t1_select_tokimon() {
+        let n = document.getElementById('t1_select').value;
+        let t1 = document.getElementById('t1');
+        // console.log(name)
+        // r = tokimon[name]
+        let t2s = document.getElementById('t2_select');
+        select_tokimon(n, t1, t2s);
+    }
+
+    function select_tokimon(n, t1, t2s) {
+
+        for (let i = 0; i < t2s.options.length; i++) {
+            let o = (t2s.options[i]);
+            if (o.disabled) o.disabled = false;
+            if (o.value == n) o.disabled = true;
+        }
+
+
+        let r = null
+        tokimon.forEach(function (t) {
+            // console.log(t);
+            if (t.name == n) r = t;
+
+        })
+        console.log(r)
+        let s = '';
+        if (r.health == 0) {
+            s += `<span>This Tokimon is Dead (0HP)<br> It will not do and damage</span> `;
+        }
+        t1.innerHTML = s + `<div style="display: block; padding: 20px">
+            <div style="width: ${r.weight}px; height: ${(r.height * (1 - r.health / 100))}px; background: red; text-align: center; font-weight: bolder ">
+                ${r.name}
+            <br>
+            <div style=" display:inline-flex; padding-top: 5px; text-align: center; font-weight: normal ">
+            <div style="width: 20px; height: ${r.fire}px; background: orangered; text-align: center;color: white">F</div>
+            <div style="width: 20px; height: ${r.water}px; background: darkblue; text-align: center;color: white ">W</div>
+            <div style="width: 20px; height: ${r.energy}px; background: purple; text-align: center;color: white ">E</div>
+            <div style="width: 20px; height: ${r.ice}px; background: cyan; text-align: center;color: white ">I</div>
+            </div></div>
+        <div style="width: ${r.weight}px; height: ${(r.height * (r.health / 100))}px; background: green "></div>
+            </div>`
+    }
+
+
+</script>
+<div class="main">
+    <div class="calc">
+
+        <h1>Welcome To The Tokimon Arena:</h1>
+
+
+        <form action="/tokimon" method="get">
+            <input class="a_button" type="submit" name="" value="Back To Home">
+        </form>
+
+
+        <div style="display: inline-flex; alignment: center">
+            <div id="t1" class="calc" style="width: 300px">
+                Please Select A Tokimon
+            </div>
+
+            <form class="" action="/tokimon_fight" method="post">
+                <div style="display: grid; text-align: center;">
+                    <h1>VS</h1>
+                    <div style="display: inline-flex; align-content: center">
+                        <select id="t1_select" name="t1_name" size="10" onchange="t1_select_tokimon()">
+                            <% results.forEach(function(r) { %>
+                                <option <% if(fightResults == true && r.name == t1.name){ %>selected
+                                        <% } %>
+                                        value="<%= r.name %>"><%= r.name %></option>
+                            <% }); %>
+                        </select>
+
+                        <select id="t2_select" name="t2_name" size="10" onchange="t2_select_tokimon()">
+                            <% results.forEach(function(r) { %>
+                                <option <% if(fightResults == true && r.name == t2.name){ %>selected
+                                        <% } %>
+                                        value="<%= r.name %>"><%= r.name %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <input type="submit" name="fight" value="FIGHT">
+                </div>
+            </form>
+
+
+            <div id="t2" class="calc" style="width: 300px">
+                Please Select A Tokimon
+            </div>
+
+        </div>
+    </div>
+</div>
+<% if(fightResults == true) { %>
+    <script>
+        console.log("test")
+        let t1 = document.getElementById('t1');
+        let t2 = document.getElementById('t2')
+        select_tokimon('<%- t1.name %>', t1, document.getElementById('t2_select'))
+        select_tokimon('<%- t2.name %>', t2, document.getElementById('t1_select'))
+
+        t1.innerHTML = `<span>-<%- t1.damage %>HP<br></span>` + t1.innerHTML
+        t2.innerHTML = `<span>-<%- t2.damage %>HP<br></span>` + t2.innerHTML
+    </script>
+<% } %>
+</body>
+</html>

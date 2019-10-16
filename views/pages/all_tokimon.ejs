@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="public/css/tokimon.css" type="text/css"/>
+</head>
+
+<body>
+
+<div class="main">
+    <div class="container">
+
+        <h1>Welcome To The Tokibase:</h1>
+
+        <form  action="/tokimon" method="get">
+            <input class="a_button" type="submit" name="" value="Back To Home">
+        </form>
+
+        <% if(typeof success !== 'undefined') { %>
+            <% if(success) { %>
+            <p> Success: Results for Tokimon search: "<%= query %>"</p>
+
+            <% } else { %>
+                <p>Error: <%= error.code %>  <%= error.detail %></p>
+            <% } %>
+        <% } %>
+        <% if(typeof del !== 'undefined') { %>
+            <% if(del) { %>
+            <p> Success: Tokimon Named "<%= tokimon.name %>" has been deleted!</p>
+
+            <% } else { %>
+                <p>Error: <%= error.code %>  <%= error.detail %></p>
+            <% } %>
+        <% } %>
+        <table class="tokimon_list">
+
+            <thead>
+            <th>Name</th>
+            <th>Trainer</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Fly</th>
+            <th>Water</th>
+            <th>Fire</th>
+            <th>Ice</th>
+            <th>Energy</th>
+            <th>Total</th>
+            <th>Health</th>
+            </thead>
+            <% results.forEach(function(r) { %>
+            <tr>
+                <th><%= r.name %></th>
+                <th><%= r.trainer %></th>
+                <th><%= r.weight %></th>
+                <th><%= r.height %></th>
+                <th><%= r.fly %></th>
+                <th><%= r.water %></th>
+                <th><%= r.fire %></th>
+                <th><%= r.ice %></th>
+                <th><%= r.energy %></th>
+                <th><%= (r.water + r.fire + r.ice + r.energy) %></th>
+                <th><%= r.health %></th>
+
+                <th>
+
+                    <form class="" action="/tokimon/<%= r.name %>" method="get">
+                        <input type="submit" value="VIEW">
+                    </form>
+
+
+                    <form class="" action="/delete_tokimon" method="post">
+                        <input hidden name="t_name" value="<%= r.name %>">
+                        <input hidden name="query" value="<%= query %>">
+                        <input type="submit" name="delete" value="DELETE">
+                    </form>
+                </th>
+            </tr>
+   <% }); %>
+
+        </table>
+
+
+    </div>
+
+</body>
+</html>

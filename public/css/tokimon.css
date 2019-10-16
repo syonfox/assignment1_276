@@ -1,0 +1,134 @@
+.main {
+    width: 90%;
+    height: 100%;
+    padding: 0;
+    /*margin-left: 5%;*/
+    max-width: 1200px;
+    float: left;
+    background-color: whitesmoke;
+    border-width: 0px;
+    border-top-width: 10px;
+    border-bottom-width: 40px;
+    padding: 25px;
+    border-color: #544a4c;
+    border-style: solid;
+    box-shadow: 0 0 15px rgba(50, 50, 50, 0.75);
+
+}
+
+.calc {
+    background-color:#c6cfd1;
+    border-radius: 10px;
+    border: 2px solid #c6cfd1;
+    padding: 15px;
+    /*width: min-content;*/
+    display:inline-block;
+    overflow: auto;
+    max-width: 90%;
+}
+
+.weight_input {
+    max-width: 50px;
+}
+.grade_input {
+    padding: 5px;
+    max-width: 50px;
+}
+
+
+
+.calc_button {
+    float: right;
+    padding: 8px;
+    margin: 8px;
+    color: whitesmoke;
+    font-weight: bold;
+    background: #B01302;
+    border: #B01302;
+}
+
+.calc_button:hover {
+    background: #9B1428;
+    border: #9B1428;
+}
+
+.a_button {
+    padding: 5px;
+    margin: 5px;
+    color: whitesmoke;
+    font-weight: bold;
+    background: #B01302;
+    border-width: thick;
+    border-radius: 5px;
+
+    border: #B01302;
+}
+
+.a_button:hover {
+    background: #9B1428;
+    border: #9B1428;
+}
+
+
+.labels {
+    background: darkgrey;
+    font-weight: bold;
+}
+.activity {
+
+}
+
+input {
+        height: 30px;
+    }
+
+.name {
+    background: transparent;
+    font-size: medium;
+    padding: 10px;
+    border: none;
+}
+.name:focus-within {
+    background: whitesmoke;
+    border-width: thick;
+    border-radius: 5px;
+    border: #c6cfd1;
+}
+
+table, th, td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    border-spacing: 0px;
+
+}
+
+table.tokimon_add th, td {
+    padding: 15px;
+}
+
+table.tokimon_list th,
+table.tokimon_list td{
+    padding: 5px;
+    font-size: medium;
+    font-weight: normal;
+}
+table.tokimon_list tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+table.tokimon_list thead {
+    background: darkgrey;
+    padding: 10px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+
+
+body {
+    background: #9B1428;
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin: 0px;
+}

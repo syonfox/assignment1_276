@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="public/css/tokimon.css" type="text/css"/>
+</head>
+
+
+<body background="#a6192e">
+
+<style>
+    input {
+        height: 30px;
+    }
+
+</style>
+<div id="main1" class='main'>
+    <div class="container">
+
+        <h1>Welcome To TOKIMON </h1>
+
+        <div class="calc">
+            <h2>Create A Tokimon:</h2>
+            <p id="para">Enter in a tokimon to add it to the database:</p>
+            <form class="" action="/add_tokimon" method="post" style="display: table">
+                <table class="tokimon_add">
+                    <tr>
+                        <th>
+                            <label>Name</label><br>
+                            <input id="tn1" type="text" maxlength="40" name="t_name" placeholder="Name">
+                        </th>
+                        <th>
+                            <label>Trainer</label><br>
+                            <input id="tn1" type="text" maxlength="40" name="t_trainer" placeholder="Trainer Name">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Weight</label><br>
+                            <input type="number" min="0" name="t_weight" value="" placeholder="0">
+                        </th>
+                        <th>
+                            <label>Height</label><br>
+                            <input type="number" min="0" name="t_height" value="" placeholder="0">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Fly</label><br>
+                            <input type="number" min="0" name="t_fly" value="" placeholder="0">
+                        </th>
+                        <th>
+                            <label>Fire</label><br>
+                            <input type="number" min="0" name="t_fire" value="" placeholder="0">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Water</label><br>
+                            <input type="number" min="0" name="t_water" value="" placeholder="0">
+                        </th>
+
+                        <th>
+                            <label>Energy</label><br>
+                            <input type="number" min="0" name="t_energy" value="" placeholder="0">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Ice</label><br>
+                            <input type="number" min="0" name="t_ice" value="" placeholder="0">
+                        </th>
+                        <th>
+                            <label>Health</label><br>
+                            <input type="number" min="0" max="100" name="t_health" value="" placeholder="100">
+                    </tr>
+
+                </table>
+                <input class="a_button" style="width: 200px" type="submit" name="" value="ADD TOKIMON">
+
+            </form>
+
+            <% if(typeof success !== 'undefined') { %>
+                <% if(success) { %>
+                    <p> Success: tokimon named <%= tokimon.name %> has been added!</p>
+
+                <% } else { %>
+                    <p>Error: <%= (error) %></p>
+                <% } %>
+            <% } %>
+            <ul>
+                <% if (typeof results !== 'undefined' && results !== null) {
+                results.forEach(function(r) { %>
+                    <li><%= r.name %> - <%= r.weight %></li>
+                <% });
+                } %>
+
+            </ul>
+
+        </div>
+        <p>
+            <br>
+        </p>
+        <div class="calc">
+            <h1>Find A Tokimon</h1>
+            <p id="para">Enter in a Tokimons name to search for it or view them all:</p>
+            <form class="" action="/find_tokimon" method="post">
+                <input id="tn2" type="text" name="t_name" placeholder="Name">
+                <input type="submit" class="a_button" name="" value="FIND TOKIMON">
+            </form>
+
+
+            <form class="" action="/find_tokimon" method="post">
+                <input hidden name="t_name" value="">
+                <input type="submit" class="a_button" name="" value="VIEW ALL TOKIMON!">
+            </form>
+        </div>
+    </div>
+    <div class="calc">
+        <h1>Enter Tokimon Arena</h1>
+        <p>Here you can battle tokimon in the database</p>
+
+        <form class="" action="/tokimon_select" method="post">
+            <input type="submit" class="a_button" name="" value="BATTLE TOKIMON">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

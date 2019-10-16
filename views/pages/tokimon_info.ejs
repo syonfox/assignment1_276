@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../public/css/tokimon.css" type="text/css"/>
+
+</head>
+
+<body>
+
+<div class="main">
+    <div class="calc">
+
+        <h1>Tokimon Info For <%= tokimon.name %>:</h1>
+
+        <div style="display: inline-flex">
+        <form action="/tokimon" method="get">
+            <input class="a_button" type="submit" name="" value="Back To Home">
+        </form>
+         <form class="" action="/find_tokimon" method="post">
+                <input hidden name="t_name" value="">
+                <input type="submit" class="a_button" name="" value="Back To The Tokibase">
+         </form>
+    </div>
+        <table class="tokimon_list">
+            <thead>
+            <th>Name</th>
+            <th>Trainer</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Fly</th>
+            <th>Water</th>
+            <th>Fire</th>
+            <th>Ice</th>
+            <th>Energy</th>
+            <th>Total</th>
+            <th>Health</th>
+            </thead>
+            <% results.forEach(function(r) { %>
+                <tr>
+                    <th><%= r.name %></th>
+                    <th><%= r.trainer %></th>
+                    <th><%= r.weight %></th>
+                    <th><%= r.height %></th>
+                    <th><%= r.fly %></th>
+                    <th><%= r.water %></th>
+                    <th><%= r.fire %></th>
+                    <th><%= r.ice %></th>
+                    <th><%= r.energy %></th>
+                    <th><%= (r.water + r.fire + r.ice + r.energy) %></th>
+                    <th><%= r.health %></th>
+
+                </tr>
+            <% }); %>
+
+        </table>
+
+        <% results.forEach(function(r) { %>
+        <div style="display: inline-flex">
+            <div style="display: block">
+                <form class="" action="/edit_tokimon/<%= r.name %>" method="post" style="display: table">
+                    <table class="tokimon_add">
+                        <tr>
+                            <th>
+                                <label>Name</label><br>
+                                <input disabled type="text" maxlength="40" name="t_name" value="<%= r.name %>">
+                            <th>
+                                <label>Trainer</label><br>
+                                <input type="text" maxlength="40" name="t_trainer" value="<%= r.trainer %>">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Weight</label><br>
+                                <input type="number" min="0" name="t_weight" placeholder="0" value=<%= r.weight %>>
+                            </th>
+                            <th>
+                                <label>Height</label><br>
+                                <input type="number" min="0" name="t_height" placeholder="0" value='<%= r.height %>'>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Fly</label><br>
+                                <input type="number" min="0" name="t_fly" placeholder="0" value=<%= r.fly %>>
+                            </th>
+                            <th>
+                                <label>Fire</label><br>
+                                <input type="number" min="0" name="t_fire" placeholder="0" value=<%= r.fire %>>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Water</label><br>
+                                <input type="number" min="0" name="t_water" placeholder="0" value=<%= r.water %>>
+                            </th>
+
+                            <th>
+                                <label>Energy</label><br>
+                                <input type="number" min="0" name="t_energy" placeholder="0" value=<%= r.energy %>>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Ice</label><br>
+                                <input type="number" min="0" name="t_ice" placeholder="0" value= <%= r.ice %>>
+                            </th>
+                            <th>
+                                <label>Health</label><br>
+                                <input type="number" min="0" max='100' name="t_health" placeholder="100"
+                                       value= <%= r.health %>>
+                        </tr>
+
+                    </table>
+                    <input class="a_button" style="width: 200px" type="submit" name="" value="UPDATE TOKIMON">
+
+                </form>
+                <form class="" action="/delete_tokimon" method="post">
+                    <input hidden name="t_name" value="<%= r.name %>">
+                    <input hidden name="query" value="">
+                    <input class="a_button" type="submit" name="delete" value="DELETE">
+                </form>
+            </div>
+            <div style="display: block; padding: 20px">
+                <div style="width: <%= r.weight %>px; height: <%= (r.height * (1 - r.health / 100)) %>px; background: red; text-align: center; font-weight: bolder ">
+                    <%=r.name%>
+                    <br>
+                    <div style=" display:inline-flex; padding-top: 5px; text-align: center; font-weight: normal ">
+                        <div style="width: 20px; height: <%= r.fire %>px; background: orangered; text-align: center;color: white">F</div>
+                        <div style="width: 20px; height: <%= r.water %>px; background: darkblue; text-align: center;color: white ">W</div>
+                        <div style="width: 20px; height: <%= r.energy %>px; background: purple; text-align: center;color: white ">E</div>
+                        <div style="width: 20px; height: <%= r.ice %>px; background: cyan; text-align: center;color: white ">I</div>
+                    </div></div>
+                <div style="width: <%= r.weight %>px; height: <%= (r.height * (r.health / 100)) %>px; background: green "></div>
+            </div>
+
+                <% }); %>
+
+            </div>
+        </div>
+</body>
+</html>
